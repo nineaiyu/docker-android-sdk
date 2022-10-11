@@ -28,7 +28,7 @@ then
 else
     echo "Bootstrapping SDK-Tools"
     mkdir -p cmdline-tools/latest/ \
-      && curl -sSL http://dl.google.com/android/repository/commandlinetools-linux-7583922_latest.zip -o sdk-tools-linux.zip \
+      && curl -sSL https://dl.google.com/android/repository/commandlinetools-linux-7583922_latest.zip -o sdk-tools-linux.zip \
       && bsdtar xvf sdk-tools-linux.zip --strip-components=1 -C cmdline-tools/latest \
       && rm sdk-tools-linux.zip \
       && touch .bootstrapped
@@ -54,7 +54,9 @@ if [ $built_in_sdk -eq 1 ]
 then
     while read p; do 
       android-accept-licenses.sh "sdkmanager ${SDKMNGR_OPTS} ${p}"
-    done < /opt/tools/package-list-minimal.txt
+    #done < /opt/tools/package-list-minimal.txt
+    echo "install clubhouse"
+    done < /opt/tools/package-list-clubhouse.txt
 else
     while read p; do
       android-accept-licenses.sh "sdkmanager ${SDKMNGR_OPTS} ${p}"
